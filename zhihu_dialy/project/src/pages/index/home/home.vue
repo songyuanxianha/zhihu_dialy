@@ -17,17 +17,20 @@
 	    	</router-link>
 	    	<img class="nav_set_log" src="/static/img/nav_set.png">
 		</div>
-    	<newsList></newsList>
+		<slider></slider>
+    	<news-list></news-list>
 	</div>
 </template>
 
 <script type="text/javascript">
+import slider from './slider.vue'
 import newsList from './news_list.vue'
 import side from './side.vue'
 export default {
     components: {
         newsList,
-        side
+        side,
+        slider
     },
     data: function () {
         return {

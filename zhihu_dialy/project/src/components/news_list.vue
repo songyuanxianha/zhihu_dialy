@@ -2,7 +2,7 @@
 <template>
     <div>
         <div id="news">
-            <p class="hot-content">{{hotNews}}</p>
+            <p class="hot-content">今日热文</p>
             <ul class="clearfix">
                 <li v-for="item in newsArr">
                     <router-link :to="'/newsContent'+item.id">
@@ -19,8 +19,7 @@
     export default {
         data () {
             return {
-                newsArr: [],  // 新闻列表数据
-                hotNews: '今日热文'
+                newsArr: []  // 新闻列表数据
             }
         },
         // 获取数据

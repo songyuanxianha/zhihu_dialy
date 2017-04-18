@@ -29,18 +29,14 @@
         created () {
             var reg = /\d+/g
             var id = this.$route.path.match(reg)
-            console.log(id)
             this.getNewsText(id)
-            console.log(this.$route.path)
         },
         methods: {
             getNewsText (id) {
                 let _this = this
                 var url = '/api/news/' + id
-                console.log(url)
                 this.$http.get(url).then(function (res) {
                     _this.newsText = res.data
-                    console.log(res.data)
                 })
             }
         }
