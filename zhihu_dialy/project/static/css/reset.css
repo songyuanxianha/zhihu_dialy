@@ -95,7 +95,7 @@ li {
     left: -0.5rem;
     right: 0rem;
 }
-#news ul li {
+.list {
     background: #fafafa;
     width: 14.73rem;
     height: 4.4rem;
@@ -107,11 +107,11 @@ li {
     padding-left: 0.33rem;
     margin-bottom: 0.34rem;
 }
-#news ul li p {
+.list p {
     width: 9.73rem;
     float: left;
 }
-#news ul li img {
+.list img {
     width: 3.64rem;
     height: 3.19rem;
     margin-right: 0.74rem;

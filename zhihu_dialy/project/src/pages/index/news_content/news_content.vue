@@ -20,6 +20,7 @@
 </template>
 
 <script type="text/javascript">
+    import news from '../data/news'  // 获取数据
     export default {
         data () {
             return {
@@ -27,18 +28,13 @@
             }
         },
         created () {
-            var reg = /\d+/g
-            var id = this.$route.path.match(reg)
-            this.getNewsText(id)
-        },
-        methods: {
-            getNewsText (id) {
-                let _this = this
-                var url = '/api/news/' + id
-                this.$http.get(url).then(function (res) {
-                    _this.newsText = res.data
-                })
-            }
+            let reg = /\d+/g
+            let id = this.$route.path.match(reg)
+            let url = '/api/news/' + id
+            let _this = this
+            news.getNews(url).then(function (res) {
+                _this.newsText = res
+            })
         }
     }
 </script>
