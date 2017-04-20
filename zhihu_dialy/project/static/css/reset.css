@@ -52,12 +52,23 @@ li {
 		font-size: 48px;
 	}
 }
+#mask {
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    background:#000;
+    opacity:0.4;
+    filter: alpha(opacity=40);
+    z-index: 998;
+}
 #nav {
-        width: 16rem;
-        height: 2.5rem;
-        background: #00a2ea;
-        flex: 1;
-        position: relative;
+    width: 16rem;
+    height: 2.5rem;
+    background: #00a2ea;
+    flex: 1;
+    position: relative;
 }
 .nav_mine_log {
     width: 0.9rem;
@@ -98,7 +109,7 @@ li {
 .list {
     background: #fafafa;
     width: 14.73rem;
-    height: 4.4rem;
+    height: auto;
     border: 1px solid #e7e7e7;
     border-radius: 5%;
     font-size: 0.74rem;

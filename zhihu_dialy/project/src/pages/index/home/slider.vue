@@ -19,6 +19,7 @@
 </template>
 
 <script type="text/javascript">
+    import news from '../data/news'  // 获取数据
     export default {
         data () {
             return {
@@ -31,7 +32,7 @@
         },
         created () {
             let _this = this
-            this.getSliderNews('api/news/latest').then(function (response) {
+            news.getNews('api/news/latest').then(function (response) {
                 _this.topNews = response.top_stories
                 _this.nowSrc = _this.topNews[0].image
                 _this.nowP = _this.topNews[0].title
@@ -48,26 +49,6 @@
             }, function () {
                 console.error('出错了', Error)
             })
-        },
-        methods: {
-            getSliderNews (url) {
-                var promise = new Promise(function (resolve, reject) {
-                    var xhr = new XMLHttpRequest()
-                    xhr.responseType = 'json'
-                    xhr.onreadystatechange = function () {
-                        if (this.readyState === 4) {
-                            if (this.status >= 200 && this.status < 300) {
-                                resolve(this.response)
-                            } else {
-                                reject(new Error(this.statusText))
-                            }
-                        }
-                    }
-                    xhr.open('GET', url, true)
-                    xhr.send(null)
-                })
-                return promise
-            }
         }
     }
 </script>

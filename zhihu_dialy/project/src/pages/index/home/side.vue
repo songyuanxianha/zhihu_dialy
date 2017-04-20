@@ -19,7 +19,6 @@
                         <div class="add" v-for="item in themes">
                             <router-link :to="'/themes'+item.id">
                                 <span>{{item.name}}</span>
-                                <span class="add-logo">+</span>
                             </router-link>
                         </div>
                     </div>
@@ -30,6 +29,7 @@
 </template>
 
 <script type="text/javascript">
+    import news from '../data/news'  // 获取数据
     export default {
         data () {
             return {
@@ -38,47 +38,16 @@
         },
         created () {
             let _this = this
-            this.getThemes('api/themes').then(function (response) {
+            news.getNews('api/themes').then(function (response) {
                 _this.themes = response.others
             }, function () {
                 console.error('出错了', Error)
             })
-        },
-        methods: {
-            getThemes (url) {
-                var promise = new Promise(function (resolve, reject) {
-                    var xhr = new XMLHttpRequest()
-                    xhr.responseType = 'json'
-                    xhr.onreadystatechange = function () {
-                        if (this.readyState === 4) {
-                            if (this.status >= 200 && this.status < 300) {
-                                resolve(this.response)
-                            } else {
-                                reject(new Error(this.statusText))
-                            }
-                        }
-                    }
-                    xhr.open('GET', url, true)
-                    xhr.send(null)
-                })
-                return promise
-            }
         }
     }
 </script>
 
-<style type="text/css">
-    #mask {
-        position:absolute;
-        top:0;
-        bottom:0;
-        left:0;
-        right:0;
-        background:#000;
-        opacity:0.4;
-        filter: alpha(opacity=40);
-        z-index: 998;
-    }
+<style scoped>
     #side {
         width: 13.58rem;
         position: absolute;

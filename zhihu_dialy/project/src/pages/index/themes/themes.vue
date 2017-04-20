@@ -2,8 +2,12 @@
 <template>
     <div>
         <div>
+            <div v-show="showSide">
+                <side></side>
+                <div id="mask" @click="hidenSide()"></div>
+            </div>
             <div id="nav">
-                <img class="nav_mine_log" src="/static/img/nav_mine.png">
+                <img @click="side()" class="nav_mine_log" src="/static/img/nav_mine.png">
                 <span class="nav_home_log">{{themesName}}</span>
             </div>
         </div>
@@ -14,26 +18,31 @@
         <div id="news">
             <p class="hot-content">主编</p>
             <ul class="clearfix">
-                <li :class="{list: hasImg}" v-for="item in themesList">
+                <li class="list clearfix" v-for="item in themesList">
                     <router-link :to="'/newsContent'+item.id">
                         <p>{{item.title}}</p>
-                        <img :src="item.images">
+                        <img :src="item.images" v-if="item.images">
                     </router-link>
                 </li>
+                <p>加载更多</p>
             </ul>
         </div>
     </div>
 </template>
 
 <script type="text/javascript">
+import side from '../home/side.vue'
 import news from '../data/news'  // 获取数据
 export default {
+    components: {
+        side
+    },
     data () {
         return {
             themesName: [],
             themesList: {},
             themes: [],
-            hasImg: false
+            showSide: false
         }
     },
     created () {
@@ -45,19 +54,17 @@ export default {
             _this.themesList = response.stories
             _this.themesName = response.name
             _this.themes = response
-            // console.log(response.stories[2].images)
-            for (var i = 0; i < _this.themesList.length; i++) {
-                // console.log(Boolean(response.stories[i].images))
-                if (_this.themesList[i].images) {
-                    _this.hasImg = true
-                    // console.log($('li'))
-                    // _this.noImg = true
-                }
-            }
-            // console.log(response)
         }, function () {
             console.error('出错了', Error)
         })
+    },
+    methods: {
+        side: function () {
+            this.showSide = true
+        },
+        hidenSide: function () {
+            this.showSide = false
+        }
     }
 }
 </script>
@@ -81,30 +88,5 @@ export default {
     #news {
         position: absolute;    
         top: 12rem;
-    }
-    .list {
-        background: #fafafa;
-        width: 14.73rem;
-        height: 4.4rem;
-        border: 1px solid #e7e7e7;
-        border-radius: 5%;
-        font-size: 0.74rem;
-        line-height: 0.95rem;
-        padding-top: 0.76rem;
-        padding-left: 0.33rem;
-        margin-bottom: 0.34rem;
-    }
-    .title {
-        background: red;
-        background: #fafafa;
-        width: 14.73rem;
-        height: 4.4rem;
-        border: 1px solid #e7e7e7;
-        border-radius: 5%;
-        font-size: 0.74rem;
-        line-height: 0.95rem;
-        padding-top: 0.76rem;
-        padding-left: 0.33rem;
-        margin-bottom: 0.34rem;
     }
 </style>
