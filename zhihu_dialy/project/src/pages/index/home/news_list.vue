@@ -21,30 +21,34 @@
         data () {
             return {
                 newsArr: [],  // 新闻列表数据
-                hotNews: '今日热文'
+                hotNews: '今日热文',
+                beforeNewsDate: ''
             }
         },
         created () {
-            console.log(document.body.scrollTop)
             let _this = this
             news.getNews('api/news/latest').then(function (response) {
                 _this.newsArr = response.stories
+                _this.beforeNewsDate = response.date - 1
+                console.log(response.date)
             }, function () {
                 console.error('出错了', Error)
             })
-            this.more()
+            this.getMore()
         },
         methods: {
-            more () {
+            getMore () {
                 let _this = this
-                let scrollTop = document.body.scrollTop
-                let clientHeight = document.body.clientHeight
-                console.log(Boolean(scrollTop + window.innerHeight >= clientHeight))
-                if (scrollTop + window.innerHeight >= clientHeight) {
-                    news.getNews('/api/news/before/20131119').then(function (response) {
-                        console.log(response.stories)
-                        _this.newsArr = _this.newsArr.concat(response.stories)
-                    })
+                document.onscroll = function () {
+                    let sTop = document.body.scrollTop
+                    let sHeight = document.body.scrollHeight
+                    let url = '/api/news/before/' + _this.beforeNewsDate
+                    if (window.innerHeight + sTop >= sHeight) {
+                        news.getNews(url).then(function (response) {
+                            _this.newsArr = _this.newsArr.concat(response.stories)
+                            _this.beforeNewsDate--
+                        })
+                    }
                 }
             }
         }
