@@ -46,6 +46,22 @@ zhihu-daily使用Vue.js和脚手架作为项目的模块化系统，使用Vue-ro
 
 还有未完善的地方，后续会完善更新
 
-项目截图
-
-截图中 待会儿上传
+项目截图<br />
+<br />
+<br />
+主页<br />
+![Image text](https://github.com/songyuanxianha/img-folder/blob/master/zhihu_screenshot/home.png)<br />
+侧边栏<br />
+![Image text](https://github.com/songyuanxianha/img-folder/blob/master/zhihu_screenshot/side.png)<br />
+主题日报<br />
+![Image text](https://github.com/songyuanxianha/img-folder/blob/master/zhihu_screenshot/themes.png)<br />
+新闻详情页<br />
+![Image text](https://github.com/songyuanxianha/img-folder/blob/master/zhihu_screenshot/news_content.png)<br />
+登录页面<br />
+![Image text](https://github.com/songyuanxianha/img-folder/blob/master/zhihu_screenshot/login.png)
+<p>
+</p>
+<p>
+	<br />
+	
+</p>
